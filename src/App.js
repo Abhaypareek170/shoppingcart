@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Routes } from "react-router-dom";
+import ForgotPassword from "./Components/Auth/ForgotPassword";
+import Login from "./Components/Auth/Login";
+import SignUp from "./Components/Auth/SignUp";
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+import Protected from "./Components/Basic/Protected";
+import ProductDetail from './Components/Basic/ProductDetail';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+      <Routes>
+        <Route path="/home" element={<Protected Component={Home}/>}></Route>
+        <Route path="/cart" element={<Protected Component={Cart}/>}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/" element={<Login />}></Route>
+        <Route
+                path="/home/:productId"
+                element={<Protected Component={ProductDetail} />}
+              ></Route>
+        <Route path="/signUp" element={<SignUp />}></Route>
+      </Routes>
+    </>
   );
 }
 
